@@ -35,30 +35,26 @@ export default function HomePage() {
   const navRef = useRef<HTMLDivElement>(null)
   const heroRef = useRef<HTMLDivElement>(null)
   const automationRef = useRef<HTMLDivElement>(null)
-
   const { scrollYProgress } = useScroll()
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
 
   useEffect(() => {
     // Animated navbar expansion
     const tl = gsap.timeline()
-
     if (navRef.current) {
       gsap.set(navRef.current, { width: "20%", x: "200%" })
-
       tl.to(navRef.current, {
         width: "100%",
         x: "0%",
         duration: 1.2,
         ease: "power2.out",
-        delay: 1.2,
+        delay: 0.3,
       })
     }
 
     // Automation section animations
     if (automationRef.current) {
       const automationItems = automationRef.current.querySelectorAll(".automation-item")
-
       gsap.fromTo(
         automationItems,
         { opacity: 0, y: 50 },
@@ -101,7 +97,6 @@ export default function HomePage() {
             <Link href="/" className="text-xl font-semibold text-[#1C1C1E] flex-shrink-0">
               DriminAI
             </Link>
-
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-10 flex-1 justify-center">
               <Link
@@ -126,7 +121,6 @@ export default function HomePage() {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#6C3EFF] to-[#C5B5FD] group-hover:w-full transition-all duration-300"></span>
               </Link>
             </div>
-
             {/* Desktop Join Waitlist Button */}
             <div className="hidden md:block flex-shrink-0">
               <Link href="/waitlist">
@@ -135,7 +129,6 @@ export default function HomePage() {
                 </Button>
               </Link>
             </div>
-
             {/* Mobile menu button */}
             <div className="md:hidden">
               <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-[#1C1C1E] hover:text-[#6C3EFF]">
@@ -144,79 +137,76 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-
-        {/* Mobile Navigation - Slide from right */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <>
-              {/* Backdrop */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
-                onClick={() => setIsMenuOpen(false)}
-              />
-
-              {/* Mobile Menu */}
-              <motion.div
-                initial={{ x: "100%", opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                exit={{ x: "100%", opacity: 0 }}
-                transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white backdrop-blur-md shadow-2xl z-50 p-6 border-l border-gray-200"
-              >
-                <div className="flex justify-between items-center mb-8">
-                  <span className="text-xl font-semibold text-[#1C1C1E]">Menu</span>
-                  <button onClick={() => setIsMenuOpen(false)} className="text-[#1C1C1E] hover:text-[#6C3EFF]">
-                    <X size={24} />
-                  </button>
-                </div>
-
-                <div className="space-y-6">
-                  <Link
-                    href="/"
-                    className="block text-lg text-[#1C1C1E] hover:text-[#6C3EFF] py-3 border-b border-gray-100 transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Home
-                  </Link>
-                  <Link
-                    href="/features"
-                    className="block text-lg text-[#1C1C1E] hover:text-[#6C3EFF] py-3 border-b border-gray-100 transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Features
-                  </Link>
-                  <Link
-                    href="/pricing"
-                    className="block text-lg text-[#1C1C1E] hover:text-[#6C3EFF] py-3 border-b border-gray-100 transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Pricing
-                  </Link>
-
-                  {/* Join Waitlist Button in Mobile Menu */}
-                  <div className="pt-4">
-                    <Link href="/waitlist" onClick={() => setIsMenuOpen(false)}>
-                      <Button className="w-full bg-gradient-to-r from-[#6C3EFF] to-[#C5B5FD] hover:from-[#5A2FE6] hover:to-[#B8A5FC] text-white rounded-full py-3 text-lg font-medium">
-                        Join Waitlist
-                      </Button>
-                    </Link>
-                  </div>
-                </div>
-              </motion.div>
-            </>
-          )}
-        </AnimatePresence>
       </nav>
+
+      {/* Mobile Navigation - Slide from right */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/50 backdrop-blur-md z-[9998]"
+              onClick={() => setIsMenuOpen(false)}
+            />
+            {/* Mobile Menu */}
+            <motion.div
+              initial={{ x: "100%", opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: "100%", opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-2xl z-[9999] p-6 border-l border-gray-200"
+            >
+              <div className="flex justify-between items-center mb-8">
+                <span className="text-xl font-semibold text-[#1C1C1E]">Menu</span>
+                <button onClick={() => setIsMenuOpen(false)} className="text-[#1C1C1E] hover:text-[#6C3EFF]">
+                  <X size={24} />
+                </button>
+              </div>
+              <div className="space-y-6">
+                <Link
+                  href="/"
+                  className="block text-lg text-[#1C1C1E] hover:text-[#6C3EFF] py-3 border-b border-gray-100 transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Home
+                </Link>
+                <Link
+                  href="/features"
+                  className="block text-lg text-[#1C1C1E] hover:text-[#6C3EFF] py-3 border-b border-gray-100 transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Features
+                </Link>
+                <Link
+                  href="/pricing"
+                  className="block text-lg text-[#1C1C1E] hover:text-[#6C3EFF] py-3 border-b border-gray-100 transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Pricing
+                </Link>
+                {/* Join Waitlist Button in Mobile Menu */}
+                <div className="pt-4">
+                  <Link href="/waitlist" onClick={() => setIsMenuOpen(false)}>
+                    <Button className="w-full bg-gradient-to-r from-[#6C3EFF] to-[#C5B5FD] hover:from-[#5A2FE6] hover:to-[#B8A5FC] text-white rounded-full py-3 text-lg font-medium">
+                      Join Waitlist
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* Hero Section */}
       <section ref={heroRef} className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 2 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
           className="text-center"
         >
           <Badge
@@ -225,7 +215,6 @@ export default function HomePage() {
           >
             🚀 Now in Beta
           </Badge>
-
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold leading-tight mb-6">
             Manage Clients, Projects,
             <br />
@@ -234,11 +223,9 @@ export default function HomePage() {
             </span>{" "}
             in One Place
           </h1>
-
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
             Built for Indian freelancers and agencies. No noise, just results.
           </p>
-
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link href="/waitlist">
               <Button
@@ -261,12 +248,11 @@ export default function HomePage() {
             </Link>
           </motion.div>
         </motion.div>
-
         {/* Floating Dashboard Mockup */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 2.5 }}
+          transition={{ duration: 1, delay: 1 }}
           style={{ y }}
           className="mt-16 relative"
         >
@@ -327,7 +313,6 @@ export default function HomePage() {
             Powerful features designed specifically for Indian freelancers and agencies
           </p>
         </motion.div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[
             {
@@ -422,7 +407,6 @@ export default function HomePage() {
               Let AI handle the repetitive tasks while you focus on growing your business
             </p>
           </div>
-
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               {[
@@ -443,7 +427,6 @@ export default function HomePage() {
                 </div>
               ))}
             </div>
-
             <div className="relative">
               <motion.div
                 animate={{ y: [0, -5, 0] }}
@@ -508,7 +491,6 @@ export default function HomePage() {
             </span>
           </h2>
           <p className="text-xl text-gray-600 mb-8">Start free, upgrade when you're ready to scale</p>
-
           {/* Pricing Toggle */}
           <div className="flex items-center justify-center space-x-4 mb-12">
             <span className={`${!isYearly ? "text-[#6C3EFF]" : "text-gray-500"}`}>Monthly</span>
@@ -542,7 +524,6 @@ export default function HomePage() {
             </AnimatePresence>
           </div>
         </motion.div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {/* Free Plan */}
           <motion.div
@@ -559,7 +540,6 @@ export default function HomePage() {
                   <div className="text-4xl font-bold mb-2">₹0</div>
                   <p className="text-gray-600">Perfect for getting started</p>
                 </div>
-
                 <ul className="space-y-4 mb-8">
                   {["Up to 2 projects", "Basic client portal", "Email support", "2GB storage", "Basic templates"].map(
                     (feature, index) => (
@@ -577,7 +557,6 @@ export default function HomePage() {
                     ),
                   )}
                 </ul>
-
                 <Link href="/waitlist">
                   <Button className="w-full bg-[#1C1C1E] hover:bg-[#2C2C2E] text-white rounded-full transition-all duration-300 hover:scale-105">
                     Get Started Free
@@ -586,7 +565,6 @@ export default function HomePage() {
               </CardContent>
             </Card>
           </motion.div>
-
           {/* Pro Plan */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -614,7 +592,6 @@ export default function HomePage() {
                   </motion.div>
                   <p className="text-gray-600">For growing agencies</p>
                 </div>
-
                 <ul className="space-y-4 mb-8">
                   {[
                     "5 projects",
@@ -638,7 +615,6 @@ export default function HomePage() {
                     </motion.li>
                   ))}
                 </ul>
-
                 <Button
                   className="w-full bg-gradient-to-r from-[#6C3EFF] to-[#C5B5FD] hover:from-[#5A2FE6] hover:to-[#B8A5FC] text-white rounded-full transition-all duration-300"
                   disabled
@@ -669,7 +645,6 @@ export default function HomePage() {
             </h2>
             <p className="text-xl text-gray-600">Everything you need to know about DriminAI</p>
           </motion.div>
-
           <div className="space-y-4">
             {[
               {
@@ -737,7 +712,6 @@ export default function HomePage() {
                 </motion.a>
               </div>
             </div>
-
             <div>
               <h4 className="font-semibold mb-4">Product</h4>
               <ul className="space-y-2">
@@ -758,7 +732,6 @@ export default function HomePage() {
                 </li>
               </ul>
             </div>
-
             <div>
               <h4 className="font-semibold mb-4">Support</h4>
               <ul className="space-y-2">
@@ -780,7 +753,6 @@ export default function HomePage() {
               </ul>
             </div>
           </div>
-
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
             <p>&copy; 2024 DriminAI. All rights reserved.</p>
           </div>
@@ -829,7 +801,6 @@ function FAQItem({ question, answer, index }: { question: string; answer: string
           {isOpen ? <Minus className="h-5 w-5 text-[#6C3EFF]" /> : <Plus className="h-5 w-5 text-[#6C3EFF]" />}
         </motion.div>
       </motion.button>
-
       <AnimatePresence>
         {isOpen && (
           <motion.div
