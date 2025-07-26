@@ -561,7 +561,7 @@ export default function HomePage() {
                 </div>
 
                 <ul className="space-y-4 mb-8">
-                  {["Up to 3 projects", "Basic client portal", "Email support", "5GB storage", "Basic templates"].map(
+                  {["Up to 2 projects", "Basic client portal", "Email support", "2GB storage", "Basic templates"].map(
                     (feature, index) => (
                       <motion.li
                         key={index}
@@ -609,7 +609,7 @@ export default function HomePage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    ₹{isYearly ? "1,999" : "2,499"}
+                    ₹{isYearly ? "4999" : "499"}
                     <span className="text-lg font-normal text-gray-600">/{isYearly ? "year" : "month"}</span>
                   </motion.div>
                   <p className="text-gray-600">For growing agencies</p>
@@ -617,10 +617,10 @@ export default function HomePage() {
 
                 <ul className="space-y-4 mb-8">
                   {[
-                    "Unlimited projects",
+                    "5 projects",
                     "Advanced AI automation",
                     "Priority support",
-                    "100GB storage",
+                    "10GB storage",
                     "Custom templates",
                     "Team collaboration",
                     "Advanced analytics",
@@ -680,7 +680,7 @@ export default function HomePage() {
               {
                 question: "How does the AI automation work?",
                 answer:
-                  "Our AI learns from your work patterns and automatically handles repetitive tasks like generating proposals, sending follow-ups, and organizing projects based on your preferences.",
+                  "Our AI automates your outreach by generating personalized emails, scheduling follow-ups, and managing replies—all based on your input or uploaded lead lists. It also helps warm up your inbox, track lead activity, and assign tasks. it also helps you write the documents limited in plus plans and increases the genreation as per the plan ",
               },
               {
                 question: "Can I invite my team members?",
