@@ -393,16 +393,16 @@ export default function PricingPage() {
                 </thead>
                 <tbody className="divide-y divide-gray-100">
                   {[
-                    { feature: "Projects", free: "3", pro: "Unlimited", enterprise: "Unlimited" },
-                    { feature: "Storage", free: "5GB", pro: "100GB", enterprise: "Unlimited" },
+                    { feature: "Projects", free: "2", pro: "5", enterprise: "Unlimited" },
+                    { feature: "Storage", free: "2GB", pro: "10GB", enterprise: "Unlimited" },
                     { feature: "Team Members", free: "1", pro: "10", enterprise: "Unlimited" },
                     { feature: "AI Automation", free: "Basic", pro: "Advanced", enterprise: "Custom" },
                     { feature: "Client Portals", free: "✓", pro: "✓", enterprise: "White-label" },
-                    { feature: "Email Campaigns", free: "✗", pro: "✓", enterprise: "✓" },
-                    { feature: "API Access", free: "✗", pro: "✓", enterprise: "✓" },
-                    { feature: "Priority Support", free: "✗", pro: "✓", enterprise: "24/7 Phone" },
+                    { feature: "Email Campaigns", free: "✓", pro: "✓", enterprise: "✓" },
+                     { feature: "Document Genreator", free: "✗", pro: "✓", enterprise: "✓" },
+                    { feature: "Priority Support", free: "✓", pro: "✓", enterprise: "24/7 Phone" },
                     { feature: "Custom Integrations", free: "✗", pro: "✗", enterprise: "✓" },
-                    { feature: "SLA Guarantee", free: "✗", pro: "✗", enterprise: "✓" },
+                    
                   ].map((row, index) => (
                     <motion.tr
                       key={row.feature}
