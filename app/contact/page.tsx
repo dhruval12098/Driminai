@@ -188,19 +188,19 @@ export default function ContactPage() {
                 {
                   icon: Mail,
                   title: "Email",
-                  content: "hello@drimin.ai",
+                  content: "info@drimindesign.in",
                   description: "Send us an email anytime",
                 },
                 {
                   icon: Phone,
                   title: "Phone",
-                  content: "+91 98765 43210",
+                  content: "+91 9284695568",
                   description: "Mon-Fri from 9am to 6pm IST",
                 },
                 {
                   icon: MapPin,
                   title: "Office",
-                  content: "Bangalore, India",
+                  content: "Pune, India",
                   description: "Come say hello at our office",
                 },
               ].map((contact, index) => (
